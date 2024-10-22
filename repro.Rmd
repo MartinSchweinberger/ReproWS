@@ -1,7 +1,7 @@
 ---
-title: "Data Management and Reproducibility"
-author: "Martin Schweinberger"
-date: "2024-05-22"
+title: "*Improving Transparency and Reproducible Results in Linguistics* (ALS 2024 Masterclass)"
+author: "Martin Schweinberger and Sam Hames"
+date: "Annual Meeting of the Australian Linguistics Society (ALS 2024), Australian National University, 26-29 November 2024"
 output:
   bookdown::html_document2
 bibliography: bibtex.bib
@@ -19,25 +19,25 @@ knitr::include_graphics("https://slcladal.github.io/images/uq1.jpg")
 knitr::include_graphics("https://slcladal.github.io/images/g_chili.jpg")
 ```
 
-This tutorial introduces basic data management techniques, version control measures, and issues relating to reproducible research. 
+This ALS2024 masterclass introduces measures that help to improve transparency and produce reproducible results in linguistics. To this aim, this ALS2024 masterclass discusses basic data management techniques, version control measures, and issues relating to reproducible research. 
 
-This tutorial is designed to provide essential guidance on data management, transparency, and reproducibility for individuals working with language data. While it is accessible to all users, it focuses particularly on beginners and intermediate users of R, aiming to enhance their data management skills and utilize RStudio to make their analyses more transparent and reproducible.
+This ALS2024 masterclass is designed to provide essential guidance on data management, transparency, and reproducibility for individuals working with language data. While it is accessible to all users, it focuses particularly on beginners and intermediate users of R, aiming to enhance their data management skills and utilize RStudio to make their analyses more transparent and reproducible.
 
 ```{r reprocicle, echo=FALSE, out.width= "40%", out.extra='style="float:right; padding:10px"'}
 knitr::include_graphics("https://slcladal.github.io/images/reprocicle.png")
 ```
 
 
-The objective of this tutorial is to demonstrate fundamental data management strategies and exemplify selected methods that improve the reproducibility of analytic workflows. By following this tutorial, users will learn to implement best practices in data management, ensure their workflows are transparent, and make their results reproducible, thereby increasing the reliability and credibility of their research.
+The objective of this ALS2024 masterclass is to demonstrate fundamental data management strategies and exemplify selected methods that improve the reproducibility of analytic workflows. By following this ALS2024 masterclass, users will learn to implement best practices in data management, ensure their workflows are transparent, and make their results reproducible, thereby increasing the reliability and credibility of their research.
 
-Furthermore, the tutorial will cover essential techniques such as version control with Git, using R Markdown for creating dynamic documents, strategies for organizing and documenting your code effectively, developing interactive Jupyter notebooks, and creating eBooks that are accessible via any browser. These methods are crucial for creating analyses that others can easily understand, verify, and build upon. By adopting these practices, you contribute to a more open and collaborative scientific community.
+Furthermore, the ALS2024 masterclass will cover essential techniques such as version control with Git, using R Markdown for creating dynamic documents, strategies for organizing and documenting your code effectively, developing interactive Jupyter notebooks, and creating eBooks that are accessible via any browser. These methods are crucial for creating analyses that others can easily understand, verify, and build upon. By adopting these practices, you contribute to a more open and collaborative scientific community.
 
 
 
 <div class="warning" style='padding:0.1em; background-color:#f2f2f2; color:#51247a'>
 <span>
 <p style='margin-top:1em; text-align:center'>
-The entire R Notebook for the tutorial can be downloaded [**here**](https://slcladal.github.io/content/repro.Rmd).  If you want to render the R Notebook on your machine, i.e. knitting the document to html or a pdf, you need to make sure that you have R and RStudio installed and you also need to download the [**bibliography file**](https://slcladal.github.io/content/bibliography.bib) and store it in the same folder where you store the Rmd file. <br></p>
+The entire R Notebook for the ALS2024 masterclass can be downloaded [**here**](https://slcladal.github.io/content/repro.Rmd).  If you want to render the R Notebook on your machine, i.e. knitting the document to html or a pdf, you need to make sure that you have R and RStudio installed and you also need to download the [**bibliography file**](https://slcladal.github.io/content/bibliography.bib) and store it in the same folder where you store the Rmd file. <br></p>
 <p style='margin-left:1em;'>
 </p></span>
 </div>
@@ -45,9 +45,9 @@ The entire R Notebook for the tutorial can be downloaded [**here**](https://slcl
 <br>
 
 
-In data science or when working with data, issues relating to organizing files and folders, managing data and projects, avoiding data loss, and efficient work flows are essential. The idea behind this tutorial is to address this issue and provide advice on how to handle data and creating efficient workflows. 
+In data science or when working with data, issues relating to organizing files and folders, managing data and projects, avoiding data loss, and efficient work flows are essential. The idea behind this ALS2024 masterclass is to address this issue and provide advice on how to handle data and creating efficient workflows. 
 
-Some of the contents of this tutorial build on the [*Digital Essentials module*](https://web.library.uq.edu.au/research-tools-techniques/digital-essentials) that is offered by the UQ library, the *Reproducible Research resources* (created by Griffith University’s Library and eResearch Services), and on Amanda Miotto's [Reproducible Reseach Things](https://github.com/amandamiotto/Reproducible-Research-Things) (see also [here](https://guereslib.github.io/Reproducible-Research-Things/) for an alternative version and [here for the GitHub repo](https://github.com/guereslib/Reproducible-Research-Things)). You can find additional information on all things relating to computers, the digital world, and computer safety in the [*Digital Essentials* course](https://web.library.uq.edu.au/research-tools-techniques/digital-essentials) that is part of UQ's library resources.
+Some of the contents of this ALS2024 masterclass build on the [*Digital Essentials module*](https://web.library.uq.edu.au/research-tools-techniques/digital-essentials) that is offered by the UQ library, the *Reproducible Research resources* (created by Griffith University’s Library and eResearch Services), and on Amanda Miotto's [Reproducible Reseach Things](https://github.com/amandamiotto/Reproducible-Research-Things) (see also [here](https://guereslib.github.io/Reproducible-Research-Things/) for an alternative version and [here for the GitHub repo](https://github.com/guereslib/Reproducible-Research-Things)). You can find additional information on all things relating to computers, the digital world, and computer safety in the [*Digital Essentials* course](https://web.library.uq.edu.au/research-tools-techniques/digital-essentials) that is part of UQ's library resources.
 
 # Basic concepts 
 
@@ -878,9 +878,9 @@ Below is an example for how you can load, process, and save your data as .rda in
 lmm <- read.delim("https://slcladal.github.io/data/lmmdata.txt", header = TRUE)
 # convert strings to factors
 lmm <- lmm %>%
-  mutate(Genre = factor(Genre),
-         Text = factor(Text),
-         Region = factor(Region))
+  dplyr::mutate(Genre = factor(Genre),
+                Text = factor(Text),
+                Region = factor(Region))
 # save data
 base::saveRDS(lmm, file = here::here("data", "lmm_out.rda"))
 # remove lmm object
